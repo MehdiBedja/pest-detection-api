@@ -374,12 +374,10 @@ def test_connection(request):
     print("✅ test_connection view was called!")
 
     try:
-        print("Incoming data:", request.data)
 
         id_token_str = request.data.get('id_token')
         user_type = request.data.get('user_type')
 
-        print("id_token:", id_token_str)
         print("user_type:", user_type)
 
         # Validate required fields
