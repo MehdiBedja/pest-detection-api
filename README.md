@@ -1,6 +1,6 @@
 # Pest Detection App · Backend API
 
-[![Tests](https://github.com/MehdiBedja/pest_detection_app_backend/actions/workflows/tests.yml/badge.svg)](https://github.com/MehdiBedja/pest_detection_app_backend/actions/workflows/tests.yml)
+[![Tests](https://github.com/MehdiBedja/pest-detection-api/actions/workflows/tests.yml/badge.svg)](https://github.com/MehdiBedja/pest-detection-api/actions/workflows/tests.yml)
 ![Python](https://img.shields.io/badge/python-3.12-blue)
 ![Django](https://img.shields.io/badge/django-5.1-0C4B33)
 ![DRF](https://img.shields.io/badge/DRF-3.15-red)
@@ -8,7 +8,7 @@
 REST backend for **ScanPest AI**, an Android app that detects agricultural pests **offline** with an on-device YOLOv11s model (93.8% mAP@50). The phone runs inference. This API stores users, syncs each user's detection history (images, bounding boxes, notes) across devices, and serves the app's legal pages.
 
 > Part of the [Mobile Agricultural Pest Detection System](https://github.com/MehdiBedja/pest-detection-system):
-> [AI research](https://github.com/MehdiBedja/pest-detection-computer-vision) · [Android app](https://github.com/MehdiBedja/pest_detection_app_frontend) · **Backend**
+> [AI research](https://github.com/MehdiBedja/pest-detection-computer-vision) · [Android app](https://github.com/MehdiBedja/pest-detection-android) · **Backend**
 
 ## What it does
 
@@ -109,8 +109,8 @@ All endpoints except signup, login, Google auth and legal pages require `Authori
 ## Run it locally
 
 ```bash
-git clone https://github.com/MehdiBedja/pest_detection_app_backend.git
-cd pest_detection_app_backend
+git clone https://github.com/MehdiBedja/pest-detection-api.git
+cd pest-detection-api
 python -m venv venv && source venv/bin/activate   # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 cd pest_detection_backend
