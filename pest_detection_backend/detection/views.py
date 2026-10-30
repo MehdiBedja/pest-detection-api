@@ -311,13 +311,13 @@ def soft_delete_detections(request):
         if not isinstance(server_ids, list) or not server_ids:
             return Response({'error': 'server_ids must be a non-empty list.'}, status=400)
 
-        # Filter detections matching server_ids
-        detections = DetectionResult.objects.filter(server_id__in=server_ids)
+        # Only the requesting user's detections can be deleted
+        detections = DetectionResult.objects.filter(server_id__in=server_ids, user=request.user)
 
         # Update isDeleted flag
-        detections.update(is_deleted=True)
+        deleted_count = detections.update(is_deleted=True)
 
-        return Response({'message': f'Successfully soft-deleted {detections.count()} detections.'}, status=200)
+        return Response({'message': f'Successfully soft-deleted {deleted_count} detections.'}, status=200)
 
     except Exception as e:
         return Response({'error': str(e)}, status=500)
