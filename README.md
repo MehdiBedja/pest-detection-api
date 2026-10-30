@@ -26,7 +26,7 @@ flowchart LR
     subgraph Phone[Android app · Kotlin / Jetpack Compose]
         Cam[Camera / gallery] --> TFL[YOLOv11s TFLite<br/>on-device inference]
         TFL --> Room[(Room DB<br/>offline history)]
-        Room --> Worker[WorkManager<br/>SyncWorker]
+        Room --> Worker[Repositories<br/>sync on reconnect]
     end
 
     Worker -- "HTTPS + Token auth<br/>Retrofit" --> API
