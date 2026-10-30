@@ -1,0 +1,24 @@
+name: Tests
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: pest_detection_backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install dependencies
+        # mysqlclient is unused (PostgreSQL in prod, SQLite in tests) and needs system headers
+        run: grep -v mysqlclient requirements.txt > /tmp/requirements-ci.txt && pip install -r /tmp/requirements-ci.txt
+      - name: Run tests
+        run: python manage.py test --settings=pest_detection_backend.settings_test
