@@ -91,7 +91,8 @@ All endpoints except signup, login, Google auth and legal pages require `Authori
 | --- | --- | --- |
 | POST | `/user_management/signup` | Create account `{user_type: "client", user: {...}}` |
 | POST | `/user_management/login` | Returns `{token, user}` |
-| POST | `/user_management/google_sign_in` | Sign in / sign up with a Google ID token |
+| POST | `/user_management/test` | Sign up with a Google ID token |
+| POST | `/user_management/google_sign_in` | Sign in with a Google ID token |
 | GET | `/user_management/get_user_info/` | Current user profile |
 | GET | `/user_management/check_is_google_user` | Whether the account uses Google auth |
 | POST | `/user_management/change_password` | Change password |
