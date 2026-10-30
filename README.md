@@ -1,23 +1,18 @@
-# Pest Detection App · Backend API
+# Pest detection: backend API
 
-[![Tests](https://github.com/MehdiBedja/pest-detection-api/actions/workflows/tests.yml/badge.svg)](https://github.com/MehdiBedja/pest-detection-api/actions/workflows/tests.yml)
-![Python](https://img.shields.io/badge/python-3.12-blue)
-![Django](https://img.shields.io/badge/django-5.1-0C4B33)
-![DRF](https://img.shields.io/badge/DRF-3.15-red)
-
-REST backend for **ScanPest AI**, an Android app that detects agricultural pests **offline** with an on-device YOLOv11s model (93.8% mAP@50). The phone runs inference. This API stores users, syncs each user's detection history (images, bounding boxes, notes) across devices, and serves the app's legal pages.
+REST backend for ScanPest AI, an Android app that detects agricultural pests offline with an on-device YOLOv11s model (93.8% mAP@50). The phone runs inference. This API stores users, syncs each user's detection history (images, bounding boxes, notes) across devices, and serves the app's legal pages.
 
 > Part of the [Mobile Agricultural Pest Detection System](https://github.com/MehdiBedja/pest-detection-system):
-> [AI research](https://github.com/MehdiBedja/pest-detection-computer-vision) · [Android app](https://github.com/MehdiBedja/pest-detection-android) · **Backend**
+> [AI research](https://github.com/MehdiBedja/pest-detection-computer-vision) · [Android app](https://github.com/MehdiBedja/pest-detection-android) · Backend
 
 ## What it does
 
-- **Accounts**: username/password signup and login, plus Google Sign-In (ID-token verification). Token authentication, password change and set-password for Google users.
-- **Offline-first sync**: the phone sends the detection IDs it has, and the server answers with what the phone is missing and what it needs from the phone. Detections are uploaded in batches (multipart: images + JSON bounding boxes).
-- **Soft delete**: deletions are flags, so they propagate to the user's other devices.
-- **Note sync**: per-detection notes use last-write-wins on a millisecond `updatedAt` timestamp.
-- **Image storage** on Cloudinary, data in PostgreSQL, hosted on Render.
-- **Legal pages** (privacy policy, terms, account deletion) required for the Play Store.
+- Accounts: username/password signup and login, plus Google Sign-In (ID-token verification). Token authentication, password change and set-password for Google users.
+- Offline-first sync: the phone sends the detection IDs it has, and the server answers with what the phone is missing and what it needs from the phone. Detections are uploaded in batches (multipart: images + JSON bounding boxes).
+- Soft delete: deletions are flags, so they propagate to the user's other devices.
+- Note sync: per-detection notes use last-write-wins on a millisecond `updatedAt` timestamp.
+- Image storage on Cloudinary, data in PostgreSQL, hosted on Render.
+- Legal pages (privacy policy, terms, account deletion) required for the Play Store.
 
 ## Architecture
 
@@ -150,7 +145,7 @@ python manage.py runserver 0.0.0.0:8000
 
 ## Tests
 
-The suite has 23 API tests covering auth, sync, soft delete, note conflict resolution and legal pages. It uses in-memory SQLite and local storage, so it needs **no database, Cloudinary account or `.env`**:
+The suite has 23 API tests covering auth, sync, soft delete, note conflict resolution and legal pages. It uses in-memory SQLite and local storage, so it needs no database, Cloudinary account or `.env`:
 
 ```bash
 cd pest_detection_backend
@@ -172,16 +167,8 @@ pest_detection_backend/
 
 ## Deployment
 
-Deployed on **Render** with gunicorn (`gunicorn pest_detection_backend.wsgi`). WhiteNoise serves static files, Cloudinary stores media, and PostgreSQL is managed by Render. Production uses HTTPS redirect, HSTS and secure cookies.
-
-## Screenshots
-
-| Android app | Detection result | Sync history |
-| --- | --- | --- |
-| ![Home](docs/screenshots/app-home.png) | ![Result](docs/screenshots/detection.png) | ![History](docs/screenshots/history.png) |
-
-<!-- Screenshot placeholders: add images to docs/screenshots/ -->
+Deployed on Render with gunicorn (`gunicorn pest_detection_backend.wsgi`). WhiteNoise serves static files, Cloudinary stores media, and PostgreSQL is managed by Render. Production uses HTTPS redirect, HSTS and secure cookies.
 
 ## Author
 
-**Mahdi Bedja**, AI Engineer · [Portfolio](https://mehdibedja.github.io) · [LinkedIn](https://www.linkedin.com/in/mahdi-bedja-0b94031b3/)
+Mahdi Bedja · [Portfolio](https://mehdibedja.github.io) · [LinkedIn](https://www.linkedin.com/in/mahdi-bedja-0b94031b3/)
